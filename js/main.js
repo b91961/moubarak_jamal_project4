@@ -118,48 +118,7 @@ window.addEventListener("DOMContentLoaded", function(){
 		console.log(id);
 	}
 	
-	//JSON DATA: Create an object to test when no data is saved in Local Storage.
-	function autoFillData(){
-		var json = {
-			"client1": {
-				"install": ["Install:", "POS"],
-				"compname": ["Company Name:", "Eskatech"],
-				"contname": ["Contact Name:", "Jamal Moubarak"],
-				"contphone": ["Contact Phone #", "734-819-1211"],
-				"contemail": ["Contact Email:", "jamal@eskatech.com"],
-				"date": ["Install Date:", "2013-03-14"],
-				"ipaddress": ["Ip Address:", "192.168.001.099"],
-				"sysuser": ["System Username:", "admin"],
-				"syspass": ["System Password:", "admin"],
-				"installed": ["The client has these systems installed:", "POS"],
-				"warranty": ["The client has this warranty:", "3 Year"],
-				"quanity": ["Quanity:", "4"],
-				"price": ["Price", "$4595.00"],
-				"notes": ["Notes:", "We installed 4 POS systems at the front counter off of a network switch we installed"]			
-			},
-			"client2":{
-				"install": ["Install:", "Surveillance"],
-				"compname": ["Company Name:", "Fairfield Inn"],
-				"contname": ["Contact Name:", "John Smith"],
-				"contphone": ["Contact Phone #", "555-555-2233"],
-				"contemail": ["Contact Email:", "john@gmail.com"],
-				"date": ["Install Date:", "2013-03-10"],
-				"ipaddress": ["Ip Address:", "192.168.001.100"],
-				"sysuser": ["System Username:", "john"],
-				"syspass": ["System Password:", "123456"],
-				"installed": ["The client has these systems installed:", "Surveillance"],
-				"warranty": ["The client has this warranty:", "5 Year"],
-				"quanity": ["Quanity:", "32"],
-				"price": ["Price", "$7995.00"],
-				"notes": ["Notes:", "We installed 8 cams 1st floor, 8 2nd floor, 8 3rd floor, 8 outside"]
-			}
-		};
-		//Store the test data into Local Storage
-		for(var n in json){
-			var id = Math.floor(Math.random()*100000001);
-			localStorage.setItem(id, JSON.stringify(json[n]));
-		}
-	}
+
 	
 	function validate(e){
 		//declaring the items we want to check
@@ -239,7 +198,7 @@ window.addEventListener("DOMContentLoaded", function(){
 		linkControls("off");
     
 		//populate the form fields with current local storage values
-		$("groups").value = item.group[1];
+		$("groups").value = item.groups[1];
 		$("compname").value = item.compname[1];
 		$("contname").value = item.contname[1];
 		$("contphone").value = item.contphone[1];
@@ -332,6 +291,15 @@ window.addEventListener("DOMContentLoaded", function(){
 		deleteLink.addEventListener("click", deleteItem);
 		deleteLink.innerHTML = deleteText;
 		linksLi.appendChild(deleteLink);	
+	}
+	
+	//JSON DATA: Create an object to test when no data is saved in Local Storage.
+	function autoFillData(){
+		//Store the test data into Local Storage
+		for(var n in json){
+			var id = Math.floor(Math.random()*100000001);
+			localStorage.setItem(id, JSON.stringify(json[n]));
+		}
 	}
 	
 	//Retrieve data from Local Storage.
