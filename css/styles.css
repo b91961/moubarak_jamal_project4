@@ -107,6 +107,9 @@ legend {
     border: 0.3em solid #6e6e6e;
     line-height: 1.3em;
 }
+.installIcon {
+	margin: -1em 0em -2em 0em;
+}
 #errors {
 	color: red
 }
