@@ -13,6 +13,14 @@ window.addEventListener("DOMContentLoaded", function(){
 		return theElement;
 	}
 	
+	//Display Value of range slider
+/*	function changeRange(){
+		var rangeValue = $("range"),
+			rangeSlider = $("quanity");
+		rangeValue.innerHTML = rangeSlider.value;
+	}
+	rangeSlider.addEventListener("change", changeRange);*/
+	
 	//Establish Variable Defaults & Run Initial Functions
 	var installGroups = ["--Type of System--", "Surveillance", "AudioVideo", "Network", "POS"],
 		warrantyValue,
@@ -211,7 +219,7 @@ window.addEventListener("DOMContentLoaded", function(){
 		var checkBoxes = document.forms[0].installed;
 		var storeCheckBoxes = [];
 		for(var j=0; j<checkBoxes.length; j++){
-			for(k=0; k<item.installed[1].length; k++){
+			for(var k=0; k<item.installed[1].length; k++){
 				if(checkBoxes[j].value === item.installed[1][k]){
 					checkBoxes[j].setAttribute("checked", "checked");
 				}
