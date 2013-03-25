@@ -5,7 +5,8 @@
 
 var json = {
 	"client1": {
-		"install": ["Install:", "POS"],
+		"id": ["Client ID:", "12345678"],
+		"group": ["Install:", "POS"],
 		"compname": ["Company Name:", "Eskatech"],
 		"contname": ["Contact Name:", "Jamal Moubarak"],
 		"contphone": ["Contact Phone #", "734-819-1211"],
@@ -21,7 +22,8 @@ var json = {
 		"notes": ["Notes:", "We installed 4 POS systems at the front counter off of a network switch we installed"]			
 	},
 	"client2":{
-		"install": ["Install:", "Surveillance"],
+		"id": ["Client ID:", "87654321"],
+		"group": ["Install:", "Surveillance"],
 		"compname": ["Company Name:", "Fairfield Inn"],
 		"contname": ["Contact Name:", "John Smith"],
 		"contphone": ["Contact Phone #", "555-555-2233"],

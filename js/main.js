@@ -92,13 +92,14 @@ window.addEventListener("DOMContentLoaded", function(){
 	//If there is no key this means it is brand new item and we need a new key.
 		var id;
 		if(!key){
-			var id = Math.floor(Math.random()*100000001);
+			id = Math.floor(Math.random()*100000001);
 		}else{
 		//Set the item to a existing key so we can edit.
 			id = key;
 		}
 		getRadio();
 		var item 				= {};
+			item.id				= ["Client ID:", id];
 			item.group 			= ["Install:", $("groups").value];
 			item.compname		= ["Company Name:", $("compname").value];
 			item.contname		= ["Contact Name:", $("contname").value];
@@ -210,18 +211,11 @@ window.addEventListener("DOMContentLoaded", function(){
 		var checkBoxes = document.forms[0].installed;
 		var storeCheckBoxes = [];
 		for(var j=0; j<checkBoxes.length; j++){
-			if(checkBoxes[j].value == "Surveillance" && item.installed[1] == "Surveillance"){
-				checkBoxes[j].setAttribute("checked", "checked");
-			}
-			if(checkBoxes[j].value == "Audio / Video" && item.installed[1] == "Audio / Video"){
-				checkBoxes[j].setAttribute("checked", "checked");
-			}
-			if(checkBoxes[j].value == "Network" && item.installed[1] == "Network"){
-				checkBoxes[j].setAttribute("checked", "checked");
-			}
-			if(checkBoxes[j].value == "POS" && item.installed[1] == "POS"){
-				checkBoxes[j].setAttribute("checked", "checked");
-			}
+			for(k=0; k<item.installed[1].length; k++){
+				if(checkBoxes[j].value === item.installed[1][k]){
+					checkBoxes[j].setAttribute("checked", "checked");
+				}
+			}	
 		}  
 		var radios = document.forms[0].warranty;
 		for(var i=0; i<radios.length; i++){
@@ -247,12 +241,11 @@ window.addEventListener("DOMContentLoaded", function(){
 		save.removeEventListener("click", saveData);
 		//change Submit button value to edit button
 		$("submitButton").src = $("editClientButton").src;
-		var editSubmit = $("editClientButton").src;
-		editSubmit.style.display = "";
+		//var editSubmit = $("editClientButton").src;
 		//save the key value established in this function as a property of the edit submit event
 		//so we can use that value when we save the data we edited
-		editSubmit.addEventListener("click", validate);
-		editSubmit.key = this.key;
+		$("submitButton").addEventListener("click", validate);
+		$("submitButton").key = this.key;
     }
 			
 		//Function delete item
