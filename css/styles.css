@@ -30,24 +30,24 @@ a:active {
 fieldset {
     font-family: helvetica, arial, sans-serif;
     font-size: 80%;
+    color: #4D4B39;
+    line-height: 1.5em;
     margin: 0em auto;
     padding: 1em auto;
     background-color: #f1f1f1;
-    color: #4D4B39;
-    max-width: 35em;
     border: 5px solid #6e6e6e;
-    line-height: 1.5em;
 }
 ul {
 	list-style: none;
 }
 h1 {
-	color: #f5f800;
+	color: white;
+	text-shadow: 2px 1px 1px black;
 	font-family: helvetica, arial, sans-serif;
 	text-align: center;
 	margin: 0em -1em 0.5em -1em;
 	padding: 0.5em 0em 0.5em 0em;
-	background-color: #07002b;
+	background-color: #144698;
 }
 h2 {
 	color: #ff8c05;
@@ -55,15 +55,14 @@ h2 {
 	font-size: 225%;
 	text-align: center;
 	margin: 1em -1em 0.5em -1em;
-	padding: 0.5em 0em 0.5em 0em;
-	background-color: ;	
+	padding: 0.5em 0em 0.5em 0em;	
 }
 legend {
 	color: #ff8c05;	
 }
 .saveButton {
 	text-align: right;
-	margin: 0.2em 0em 0em 0em
+	margin-top: 0.2em;
 }
 #editClientButton {
 	display: none;
@@ -99,16 +98,14 @@ legend {
 	list-style: none;	
 	font-family: helvetica, arial, sans-serif;
     font-size: 90%;
-    margin: 0em;
     padding: 0.3em;
     background-color: #f1f1f1;
     color: #4D4B39;
-    max-width: 35em;
     border: 0.3em solid #6e6e6e;
     line-height: 1.3em;
 }
 .installIcon {
-	margin: -1em 0em -2em 0em;
+	margin: -1em 0em -3em -1em;
 }
 #errors {
 	color: red
