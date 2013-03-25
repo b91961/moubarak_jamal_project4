@@ -14,7 +14,7 @@ window.addEventListener("DOMContentLoaded", function(){
 	}
 	
 	//Establish Variable Defaults & Run Initial Functions
-	var installGroups = ["--Type of System--", "Surveillance", "Audio / Video", "Network", "POS"],
+	var installGroups = ["--Type of System--", "Surveillance", "AudioVideo", "Network", "POS"],
 		warrantyValue,
 		installedValue,
 		errorMessage = $("errors");
@@ -198,7 +198,7 @@ window.addEventListener("DOMContentLoaded", function(){
 		linkControls("off");
     
 		//populate the form fields with current local storage values
-		$("groups").value = item.groups[1];
+		$("groups").value = item.group[1];
 		$("compname").value = item.compname[1];
 		$("contname").value = item.contname[1];
 		$("contphone").value = item.contphone[1];
@@ -325,6 +325,7 @@ window.addEventListener("DOMContentLoaded", function(){
 			var obj = JSON.parse(value);
 			var chooseSubList = document.createElement("ul");
 			chooseli.appendChild(chooseSubList);
+			chooseImage(obj.group[1], chooseSubList);
 			for (var n in obj){
 				var chooseSubli = document.createElement("li");
 				chooseSubList.appendChild(chooseSubli);
@@ -335,6 +336,16 @@ window.addEventListener("DOMContentLoaded", function(){
 			//Create edit and delete buttons for items in local storage.
 			makeItemLinks(localStorage.key(i), linksLi); 		
 		}
+	}
+	
+	//Get image for showData.
+	function chooseImage(installCat, chooseSubList){
+		var imgLi = document.createElement("li");
+		chooseSubList.appendChild(imgLi);
+		var nextImg = document.createElement("img");
+		var insertImg = nextImg.setAttribute("src", "img/"+ installCat + ".png");
+		nextImg.setAttribute("class", "installIcon");
+		imgLi.appendChild(nextImg);	
 	}
 	
 	//Clear all stored data
