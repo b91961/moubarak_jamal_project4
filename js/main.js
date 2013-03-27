@@ -1,29 +1,37 @@
 // alert("JavaScript works!");
 
 // Jamal Moubarak
-// Project 3
+// Project 4
 // VFW 1303
 
 //Wait until DOM is loaded
 window.addEventListener("DOMContentLoaded", function(){
 
 	//getElementById Function
-	function $(x){
+	function get(x){
 		var theElement = document.getElementById(x);
 		return theElement;
 	}
+	
+	//Display Value of range slider
+	function changeRange(){
+		var rangeValue = get("range"),
+			rangeSlider = get("quanity");
+		rangeValue.innerHTML = rangeSlider.value;
+	}
+	document.getElementById("quanity").addEventListener("change", changeRange);
 	
 	//Establish Variable Defaults & Run Initial Functions
 	var installGroups = ["--Type of System--", "Surveillance", "AudioVideo", "Network", "POS"],
 		warrantyValue,
 		installedValue,
-		errorMessage = $("errors");
+		errorMessage = get("errors");
 	;
 	
 	//Create select field and give items.
 	function installType(){
 		var getTag = document.getElementsByTagName("form"),
-			getLi = $("select"),
+			getLi = get("select"),
 			getSelect = document.createElement("select");
 			getSelect.setAttribute("id", "groups");
 			getSelect.setAttribute("class", "dropdown");
@@ -42,17 +50,17 @@ window.addEventListener("DOMContentLoaded", function(){
 	function linkControls(n){
 		switch(n){
 			case "on":
-				$("installForm").style.display = "none";
-				$("clear").style.display = "inline";
-				$("displayData").style.display = "none";
-				$("addClient").style.display = "inline";
+				get("installForm").style.display = "none";
+				get("clear").style.display = "inline";
+				get("displayData").style.display = "none";
+				get("addClient").style.display = "inline";
 				break;
 			case "off":
-				$("installForm").style.display = "block";
-				$("clear").style.display = "inline";
-				$("displayData").style.display = "inline";
-				$("addClient").style.display = "none";
-				$("items").style.display = "inline";
+				get("installForm").style.display = "block";
+				get("clear").style.display = "inline";
+				get("displayData").style.display = "inline";
+				get("addClient").style.display = "none";
+				get("items").style.display = "inline";
 				break;
 				
 			default:
@@ -92,27 +100,28 @@ window.addEventListener("DOMContentLoaded", function(){
 	//If there is no key this means it is brand new item and we need a new key.
 		var id;
 		if(!key){
-			var id = Math.floor(Math.random()*100000001);
+			id = Math.floor(Math.random()*100000001);
 		}else{
 		//Set the item to a existing key so we can edit.
 			id = key;
 		}
 		getRadio();
 		var item 				= {};
-			item.group 			= ["Install:", $("groups").value];
-			item.compname		= ["Company Name:", $("compname").value];
-			item.contname		= ["Contact Name:", $("contname").value];
-			item.contphone		= ["Contact Phone #:", $("contphone").value];
-			item.contemail		= ["Contact Email:", $("contemail").value];
-			item.date			= ["Install Date:", $("date").value];
-			item.ipaddress		= ["Ip Address:", $("ipaddress").value];
-			item.sysuser		= ["System Username:", $("sysuser").value];
-			item.syspass		= ["System Password:", $("syspass").value];
+			item.id				= ["Client ID:", id];
+			item.group 			= ["Install:", get("groups").value];
+			item.compname		= ["Company Name:", get("compname").value];
+			item.contname		= ["Contact Name:", get("contname").value];
+			item.contphone		= ["Contact Phone #:", get("contphone").value];
+			item.contemail		= ["Contact Email:", get("contemail").value];
+			item.date			= ["Install Date:", get("date").value];
+			item.ipaddress		= ["Ip Address:", get("ipaddress").value];
+			item.sysuser		= ["System Username:", get("sysuser").value];
+			item.syspass		= ["System Password:", get("syspass").value];
 			item.installed 		= ["The client has these systems installed:", getChecks()];
 			item.warranty 		= ["The client has this warranty:", warrantyValue];
-			item.quanity 		= ["Quantity (# of Cameras, TV's, POS Terminals, etc):", $("quanity").value];
-			item.price			= ["Price:", $("price").value];
-			item.notes			= ["Notes:", $("notes").value];
+			item.quanity 		= ["Quantity (# of Cameras, TV's, POS Terminals, etc):", get("quanity").value];
+			item.price			= ["Price:", get("price").value];
+			item.notes			= ["Notes:", get("notes").value];
 		localStorage.setItem(id, JSON.stringify(item));
 		alert("Client Information is Saved!");
 		console.log(id);
@@ -122,11 +131,11 @@ window.addEventListener("DOMContentLoaded", function(){
 	
 	function validate(e){
 		//declaring the items we want to check
-		var getGroup = $("groups");
-		var getcompname = $("compname");
-		var getcontname = $("contname");
-		var getcontphone = $("contphone");
-		var getcontemail = $("contemail");
+		var getGroup = get("groups");
+		var getcompname = get("compname");
+		var getcontname = get("contname");
+		var getcontphone = get("contphone");
+		var getcontemail = get("contemail");
 			
 		//reseting error messages
 		errorMessage.innerHTML = "";
@@ -198,30 +207,23 @@ window.addEventListener("DOMContentLoaded", function(){
 		linkControls("off");
     
 		//populate the form fields with current local storage values
-		$("groups").value = item.group[1];
-		$("compname").value = item.compname[1];
-		$("contname").value = item.contname[1];
-		$("contphone").value = item.contphone[1];
-		$("contemail").value = item.contemail[1];    
-		$("date").value = item.date[1];
-		$("ipaddress").value = item.ipaddress[1];
-		$("sysuser").value = item.sysuser[1];
-		$("syspass").value = item.syspass[1];
+		get("groups").value = item.group[1];
+		get("compname").value = item.compname[1];
+		get("contname").value = item.contname[1];
+		get("contphone").value = item.contphone[1];
+		get("contemail").value = item.contemail[1];    
+		get("date").value = item.date[1];
+		get("ipaddress").value = item.ipaddress[1];
+		get("sysuser").value = item.sysuser[1];
+		get("syspass").value = item.syspass[1];
 		var checkBoxes = document.forms[0].installed;
 		var storeCheckBoxes = [];
 		for(var j=0; j<checkBoxes.length; j++){
-			if(checkBoxes[j].value == "Surveillance" && item.installed[1] == "Surveillance"){
-				checkBoxes[j].setAttribute("checked", "checked");
-			}
-			if(checkBoxes[j].value == "Audio / Video" && item.installed[1] == "Audio / Video"){
-				checkBoxes[j].setAttribute("checked", "checked");
-			}
-			if(checkBoxes[j].value == "Network" && item.installed[1] == "Network"){
-				checkBoxes[j].setAttribute("checked", "checked");
-			}
-			if(checkBoxes[j].value == "POS" && item.installed[1] == "POS"){
-				checkBoxes[j].setAttribute("checked", "checked");
-			}
+			for(var k=0; k<item.installed[1].length; k++){
+				if(checkBoxes[j].value === item.installed[1][k]){
+					checkBoxes[j].setAttribute("checked", "checked");
+				}
+			}	
 		}  
 		var radios = document.forms[0].warranty;
 		for(var i=0; i<radios.length; i++){
@@ -238,21 +240,20 @@ window.addEventListener("DOMContentLoaded", function(){
 				radios[i].setAttribute("checked", "checked");
 			}
 		}
-		$("quanity").value = item.quanity[1];
-		$("price").value = item.price[1];
-		$("notes").value = item.notes[1];
+		get("quanity").value = item.quanity[1];
+		get("price").value = item.price[1];
+		get("notes").value = item.notes[1];
     
-		var save = $("submitButton");
+		var save = get("submitButton");
 		//remove the initial listener from the input save contact button
 		save.removeEventListener("click", saveData);
 		//change Submit button value to edit button
-		$("submitButton").src = $("editClientButton").src;
-		var editSubmit = $("editClientButton").src;
-		editSubmit.style.display = "";
+		get("submitButton").src = get("editClientButton").src;
+		//var editSubmit = get("editClientButton").src;
 		//save the key value established in this function as a property of the edit submit event
 		//so we can use that value when we save the data we edited
-		editSubmit.addEventListener("click", validate);
-		editSubmit.key = this.key;
+		get("submitButton").addEventListener("click", validate);
+		get("submitButton").key = this.key;
     }
 			
 		//Function delete item
@@ -302,6 +303,16 @@ window.addEventListener("DOMContentLoaded", function(){
 		}
 	}
 	
+	//Get image for showData.
+	function chooseImage(installCat, chooseSubList){
+		var imgLi = document.createElement("li");
+		chooseSubList.appendChild(imgLi);
+		var nextImg = document.createElement("img");
+		var insertImg = nextImg.setAttribute("src", "img/"+ installCat + ".png");
+		nextImg.setAttribute("class", "installIcon");
+		imgLi.appendChild(nextImg);	
+	}
+	
 	//Retrieve data from Local Storage.
 	function showData(){
 		linkControls("on");
@@ -338,16 +349,6 @@ window.addEventListener("DOMContentLoaded", function(){
 		}
 	}
 	
-	//Get image for showData.
-	function chooseImage(installCat, chooseSubList){
-		var imgLi = document.createElement("li");
-		chooseSubList.appendChild(imgLi);
-		var nextImg = document.createElement("img");
-		var insertImg = nextImg.setAttribute("src", "img/"+ installCat + ".png");
-		nextImg.setAttribute("class", "installIcon");
-		imgLi.appendChild(nextImg);	
-	}
-	
 	//Clear all stored data
 	function clearStorage() {
 		if(localStorage.length === 0){
@@ -360,11 +361,11 @@ window.addEventListener("DOMContentLoaded", function(){
 		}
 	}
 	//Set Link & Submit Click Events
-	var displayData = $("displayData");
+	var displayData = get("displayData");
 	displayData.addEventListener("click", showData);
-	var clearData = $("clear");
+	var clearData = get("clear");
 	clearData.addEventListener("click", clearStorage);
-	var save = $("submitButton");
+	var save = get("submitButton");
 	save.addEventListener("click", validate);
 });
 
