@@ -14,12 +14,12 @@ window.addEventListener("DOMContentLoaded", function(){
 	}
 	
 	//Display Value of range slider
-/*	function changeRange(){
+	function changeRange(){
 		var rangeValue = get("range"),
 			rangeSlider = get("quanity");
 		rangeValue.innerHTML = rangeSlider.value;
 	}
-	rangeSlider.addEventListener("change", changeRange);*/
+	document.getElementById("quanity").addEventListener("change", changeRange);
 	
 	//Establish Variable Defaults & Run Initial Functions
 	var installGroups = ["--Type of System--", "Surveillance", "AudioVideo", "Network", "POS"],
@@ -303,6 +303,16 @@ window.addEventListener("DOMContentLoaded", function(){
 		}
 	}
 	
+	//Get image for showData.
+	function chooseImage(installCat, chooseSubList){
+		var imgLi = document.createElement("li");
+		chooseSubList.appendChild(imgLi);
+		var nextImg = document.createElement("img");
+		var insertImg = nextImg.setAttribute("src", "img/"+ installCat + ".png");
+		nextImg.setAttribute("class", "installIcon");
+		imgLi.appendChild(nextImg);	
+	}
+	
 	//Retrieve data from Local Storage.
 	function showData(){
 		linkControls("on");
@@ -339,16 +349,6 @@ window.addEventListener("DOMContentLoaded", function(){
 		}
 	}
 	
-	//Get image for showData.
-	function chooseImage(installCat, chooseSubList){
-		var imgLi = document.createElement("li");
-		chooseSubList.appendChild(imgLi);
-		var nextImg = document.createElement("img");
-		var insertImg = nextImg.setAttribute("src", "img/"+ installCat + ".png");
-		nextImg.setAttribute("class", "installIcon");
-		imgLi.appendChild(nextImg);	
-	}
-	
 	//Clear all stored data
 	function clearStorage() {
 		if(localStorage.length === 0){
@@ -367,59 +367,5 @@ window.addEventListener("DOMContentLoaded", function(){
 	clearData.addEventListener("click", clearStorage);
 	var save = get("submitButton");
 	save.addEventListener("click", validate);
-	
-/*	//Search
-	var search = get("searchButton");
-	search.addEventListener("click", showSearch);
-	
-	function showSearch(){
-		var category = get("groups").value;
-		var term = get("search").value;
-		
-		//Search by Category Only.
-		if(category != "--Type of System--" && term==""){
-			for(var i=0, len=localStorage.length; i<len;1++){
-				var key = localStorage.getItem(key);
-				var item = JSON.parse(value);
-				if(category === item.group[1]){
-					for(n in item){
-						console.log(item[n][0]+": "+item[n][1]);
-					}	
-				}
-			}
-		}
-	
-		//Search by Term only.
-		if(category == "--Type of System--" && term !=""){
-			for(var i=0, len=localStorage.length; i=<len;i++){
-				var key = localStorage.key(i);
-				var value = localStorage.getItem(key);
-				var item = JSON.parse(value);
-				for(n in item){
-					if(term === item[n][1]){
-						for (q in item){
-							console.log(item[q][0]+": "+item[q][1]);
-						}
-					}
-				}		
-			}
-		}
-		
-		//Search by Category and Term.
-		if(category == "--Type of System--" && term !=""){
-			for(var i=0, len=localStorage.length; i<len;i++){
-				var key = localStorage.key(i);
-				var value = localStorage.getItem(key);
-				var item = JSON.parse(value);
-				for(n in item){
-					if(term === item[n][1]){
-						for(q in item){
-							console.log(item[q][0]+": "+item[q][1]);
-						}
-					}
-				}
-			}
-		}
-	}*/
 });
 
